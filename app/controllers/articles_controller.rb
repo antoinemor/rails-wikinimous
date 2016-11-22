@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  before_filter :authorize
+  def home
+  end
+
   def index
     @articles = Article.all
   end
