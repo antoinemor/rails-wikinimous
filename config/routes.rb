@@ -1,17 +1,13 @@
 Rails.application.routes.draw do
-  get 'articles/index'
+  get    "articles",          to: "articles#index"
 
-  get 'articles/show'
+  get    "articles/new",      to: "articles#new"
+  post   "articles",          to: "articles#create"
 
-  get 'articles/new'
+  get    "articles/:id/edit", to: "articles#edit", as: :edit_article
+  patch  "articles/:id",      to: "articles#update"
 
-  get 'articles/create'
+  get    "articles/:id",      to: "articles#show", as: :article
 
-  get 'articles/edit'
-
-  get 'articles/update'
-
-  get 'articles/destroy'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  delete "articles/:id",      to: "articles#destroy", as: :delete_article
 end
