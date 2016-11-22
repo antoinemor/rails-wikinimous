@@ -1,7 +1,25 @@
+<style type="text/css" media="screen">
+    #editor {
+        width: 600px;
+        height: 400px;
+    }
+</style>
+
 <%= form_for(@article) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <%= f.label :content %>
-  <%= f.text_area :content %>
+  <div id="editor">
+  </div>
+  <%= f.text_area :content %> <br>
   <%= f.submit %>
 <% end %>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/javascript");
+  $('.edit_article').submit(function(e) {
+    $('#article_content').val(editor.getValue());
+  });
+</script>

@@ -1,8 +1,24 @@
+<style type="text/css" media="screen">
+    #editor {
+        width: 600px;
+        height: 400px;
+    }
+</style>
+
 <h2><%= @article.title %></h2>
 <br>
 <p><strong>Content:</strong></p>
 <br>
-<div><%= Kramdown::Document.new(@article.content).to_html.html_safe %></div>
+
+<div id="editor"></div>
+
 <p>Created at <%= @article.created_at %></p>
 
 <%= link_to "Home", articles_path %>
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/javascript");
+  editor.setValue('<%= @article.content %>');
+</script>
+
